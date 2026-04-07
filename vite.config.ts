@@ -4,5 +4,6 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
+  publicDir: "app/public", //
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
 });

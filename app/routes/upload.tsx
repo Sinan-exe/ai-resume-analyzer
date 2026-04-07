@@ -9,7 +9,7 @@ import { generateUUID } from "~/lib/utils";
 
 const upload = () => {
   const { auth, isLoading, ai, kv, fs } = usePuterStore();
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
   const [statusText, setStatusText] = useState("");
   const [file, setFile] = useState<File | null>(null);
@@ -90,6 +90,7 @@ const upload = () => {
     await kv.set(`resume:${uuid}`, JSON.stringify(data));
     setStatusText("Analysis complete, redirecting...");
     console.log(data);
+    navigate(`/resume/${uuid}`);
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -107,7 +108,7 @@ const upload = () => {
   };
 
   return (
-    <main className="bg-[url('app/public/images/bg-main.svg')] bg-cover">
+    <main className="bg-[url('/images/bg-main.svg')] bg-cover">
       <Navbar />
       <section className="main-section">
         <div className="page-heading py-16">
@@ -115,7 +116,7 @@ const upload = () => {
           {isProcessing ? (
             <>
               <h2>{statusText}</h2>
-              <img src="app/public/images/resume-scan.gif" className="w-full" />
+              <img src="/images/resume-scan.gif" className="w-full" />
             </>
           ) : (
             <h2>Drop your resume for an ATS Score and improvement tips</h2>
